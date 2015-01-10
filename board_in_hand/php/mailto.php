@@ -1,53 +1,60 @@
 <?php
-$to = "paul.hebert@paulhebertdesigns.com";
-$from = $_POST['email'];
-$subject = $_POST['subject'] . ' -- ' . $_POST['name'];
-$message = $_POST['message'];
+	include '../../cheatsheet2.php';
 
-//Get the uploaded file information
-$name_of_uploaded_file =
-    basename($_FILES['attachment']['name']);
- 
-//get the file extension of the file
-$type_of_uploaded_file =
-    substr($name_of_uploaded_file,
-    strrpos($name_of_uploaded_file, '.') + 1);
- 
-$size_of_uploaded_file =
-    $_FILES["uploaded_file"]["size"]/1024;//size in KBs
+	require 'PHPMailer/PHPMailerAutoload.php';
 
-$headers = 'From: '. $from . "\r\n" .
-    'Reply-To: ' . $from . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
+	$tooLarge = false;
 
-//Settings
-$max_allowed_file_size = 2000; // size in KB
-$allowed_extensions = array("jpg", "jpeg", "gif", "bmp");
- 
-//Validations
-if($size_of_uploaded_file > $max_allowed_file_size )
-{
-  $errors .= "\n Size of file should be less than $max_allowed_file_size";
-}
- 
-//------ Validate the file extension -----
-$allowed_ext = false;
-for($i=0; $i<sizeof($allowed_extensions); $i++)
-{
-  if(strcasecmp($allowed_extensions[$i],$type_of_uploaded_file) == 0)
-  {
-    $allowed_ext = true;
-  }
-}
- 
-if(!$allowed_ext)
-{
-  $errors .= "\n The uploaded file is not supported file type. ".
-  " Only the following file types are supported: ".implode(',',$allowed_extensions);
-}
+	$mail = new PHPMailer;
 
-mail($to, $subject, $message, $headers);
+	//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+	$mail->isSMTP();                                      // Set mailer to use SMTP
+	$mail->Host = 'p3plcpnl0888.prod.phx3.secureserver.net;p3plcpnl0888.prod.phx3.secureserver.net';  // Specify main and backup SMTP servers
+	$mail->SMTPAuth = true;                               // Enable SMTP authentication
+	$mail->Username = 'paul.hebert@paulhebertdesigns.com';                 // SMTP username
+	$mail->Password = $emailPass;                           // SMTP password
+	$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+	$mail->Port = 587;                                    // TCP port to connect to
+
+	$mail->From = $_POST['email'];
+	$mail->FromName = $_POST['name'];
+	$mail->addAddress('paul.hebert@paulhebertdesigns.com', 'Paul Hebert');     // Add a recipient
+	//$mail->addAddress('ellen@example.com');               // Name is optional
+	$mail->addReplyTo($_POST['email'], $_POST['name']);
+	//$mail->addCC('cc@example.com');
+	//$mail->addBCC('bcc@example.com');
+
+	//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+	//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+	if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] == UPLOAD_ERR_OK) {
+	    if ($_FILES['attachment']['size'] < 1048576){	
+	    	$mail->AddAttachment($_FILES['attachment']['tmp_name'],$_FILES['attachment']['name']);
+	    } else{
+	    	$tooLarge = true;
+	    }
+	}
+
+	$mail->isHTML(true);                                  // Set email format to HTML
+
+	$mail->Subject = $_POST['subject'] . ' -- ' . $_POST['name'];
+	$mail->Body    = $_POST['message'];
+	$mail->AltBody = $_POST['message'];
+
+	if ($tooLarge){
+		header("Location: " . $_GET['url'] . 'err=size');
+		die();
+	} else{
+		if(!$mail->send()) {
+		    echo 'Message could not be sent.';
+		    echo 'Mailer Error: ' . $mail->ErrorInfo;
+		} else {
+		    header("Location: http://boardinhand.com/contact_thanks.php");
+			die();
+		}
+	} 
 ?>
+
 <script>
-window.location = '../index.php';
+/*window.location = '../contact_thanks.php';*/
 </script>

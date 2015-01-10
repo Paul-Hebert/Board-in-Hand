@@ -16,6 +16,7 @@ body{
     -webkit-box-sizing: border-box; 
     -moz-box-sizing: border-box;  
     font-family: 'Open Sans', sans-serif;
+    z-index:1;
 }
 
 a{
@@ -26,13 +27,18 @@ a{
 p{
     padding-bottom: 10px;
     padding-top:10px;
+    line-height: 130%;
 }
 
-h1{
+h1,h2{
     font-size:18pt;
     font-weight:600;
     padding:20px;
     padding-left:0px;
+}
+
+h2{
+    font-size:14pt;
 }
 
 h1, p{
@@ -40,8 +46,12 @@ h1, p{
     margin-right: 20px;
 }
 
-nav, #header, #content, .checkout .itemRow:last-of-type, h1{
+nav, #header, #content, .checkout .itemRow:last-of-type, h1, h2, .simpleCart_shelfItem{
     border-bottom: 2pt solid #63A5CE;
+}
+
+#content, #footer, nav{
+    border-top: 2pt solid #63A5CE;
 }
 
 .mobile{
@@ -112,9 +122,13 @@ nav a{
     padding-bottom:15px;
 }
 
-
 nav a:hover{
     font-weight:700;
+}
+
+nav.row{
+    padding:0px;
+    padding-top: 15px;
 }
 
 /*/////////////////////////////////////////////////////////////////////////////
@@ -123,7 +137,49 @@ nav a:hover{
 
 #content{
     overflow:hidden;
-    min-height:400px;
+    min-height:550px;
+}
+
+.L_Box{
+    cursor:pointer;
+    z-index:2;
+}
+
+.L_Box img{
+    width:100%;
+    padding:7px;
+    padding-bottom:30px;
+}
+
+.L_Box.L_Box_Clicked{
+    width:700px;
+    position:fixed;
+    top:5%;
+    left:15%;
+
+    background:#fff;
+    overflow:hidden;
+
+    border-radius:15px;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    -o-border-radius:15px;
+    border:4px solid #63A5CE;
+}
+
+.L_Box_Clicked img{ 
+    height:700px;
+    width:auto;
+    position:relative;
+    left:250px;
+    /* Firefox */
+    -moz-transform:rotate(-45deg);
+    /* Safari and Chrome */
+    -webkit-transform:rotate(-45deg);
+    /* Opera */
+    -o-transform:rotate(45deg);
+    /* IE9 */
+    -ms-transform:rotate(45deg);
 }
 
 /*/////////////////////////////////////////////////////////////////////////////
@@ -147,6 +203,8 @@ nav a:hover{
     text-align:center;
     padding-bottom:30px;
     font-size:14pt;
+    border-radius: 5px;
+    -moz-border-radius:5px;
 }
 
 .deck *{
@@ -166,14 +224,18 @@ nav a:hover{
     background:#7ACCFF;
 }
 
-.productName{
+.deck .item_price{
+    padding-top:5px;
+}
+
+.productName, .fake_name{
     font-size:20pt;
     font-weight:300;
     width:80%;
     margin:0 auto;
 }
 
-.item_price{
+.item_price, .fake_price{
     font-weight:600;
     font-style:italic;
 }
@@ -183,6 +245,10 @@ nav a:hover{
 /*/////////////////////////////////////////////////////////////////////////////
     View Product
 //////////////////////////////////////////////////////////////////////////////*/
+
+img.col-2{
+    padding-bottom:20px;
+}
 
 .productDescription{
     text-align: right;
@@ -195,20 +261,30 @@ nav a:hover{
 }
 
 .productInfo{
-    margin-top:100px;
-    font-size:18pt;    
+    margin-top:60px;
+    font-size:16pt;    
 }
 
-.withGear{
-    font-size:24pt;
+.simpleCart_shelfItem{
+    width: 250px;
+    float: right;
+    position:relative;
+    left:-75px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
 }
 
-.productInfo .productName{
-    font-size:36pt;
+.simpleCart_shelfItem p{
+    margin:0px;
+    font-size:14pt;
 }
 
-.item_add, .simpleCart_checkout, .checkoutLink, #send{
-    background:#fff;
+.simpleCart_shelfItem h1{
+    margin:0px;
+}
+
+.item_add, .simpleCart_checkout, .checkoutLink, .send, .button{
+    background:#EFEFEF;
     color:#EF2B00;
     font-style:italic;
     font-weight:600;
@@ -222,20 +298,23 @@ nav a:hover{
     padding-right:10px;
 }
 
-.item_add:hover, .simpleCart_checkout:hover, .checkoutLink:hover, #send:hover{
+.item_add:hover, .simpleCart_checkout:hover, .checkoutLink:hover, .send:hover, .button:hover{
     font-weight:700;
+    background:#fff;
+    color:#000;
 }
 
 .big{
     font-size:24pt;
     padding:10px;
-    padding-right:40px;
-    padding-left:40px;
+    padding-right:35px;
+    padding-left:35px;
     margin-left:10px;
+    white-space: nowrap;
 }
 
 #mainAddedError{
-    height:;
+    margin-left:15px;
 }
 
 /*/////////////////////////////////////////////////////////////////////////////
@@ -254,7 +333,7 @@ nav a:hover{
     position:relative;
     margin-bottom:5px;
     overflow:hidden;
-    border-bottom: 2px dotted #63A5CE;
+    border-bottom: 2px solid #63A5CE;
 }
 
 .headerRow div, .itemRow div{
@@ -273,7 +352,7 @@ nav a:hover{
 
 .headerRow div{
     font-size:18pt;
-    font-weight:400;
+    font-weight:600;
 }
 
 #checkoutHolder{
@@ -311,6 +390,11 @@ nav a:hover{
     top:8px;
 }
 
+.errorTag{
+    border:2px solid #EF2B00;
+    color:#EF2B00;
+}
+
 #zip{
     display: block;
 }
@@ -328,6 +412,7 @@ nav a:hover{
 #shipping, #total{
     position:relative;
     left:50%;
+    padding:3px;
 }
 
 #shipping:before, #total:before{
@@ -394,11 +479,15 @@ input, textarea{
     margin-bottom:10px;
 }
 
-#send{
+.send{
     font-size:24pt;
     width:50%;
     margin-left:25%;
     cursor:pointer;
+}
+
+#sizeError{
+    width:100%;
 }
 
 /*/////////////////////////////////////////////////////////////////////////////
@@ -408,10 +497,10 @@ input, textarea{
 .row{
     clear: both;
     margin: 0 auto;
-    padding-top:15px;
+    padding-top:7px;
+    padding-bottom:7px;
     overflow:hidden;
     width:100%;
-    max-width:1080px;
 }
 
 [class^="col-"] {
@@ -443,7 +532,7 @@ input, textarea{
 
 
 /* Phone */
-@media (min-width : 320px) and (max-width : 480px){
+@media (max-device-width : 700px), (max-width : 700px){
     
     .stretch-12{
         width:100%;
@@ -494,8 +583,12 @@ input, textarea{
         min-height:56px;
     }
 
-    nav, #footer{
+    nav{
         border-top: 2pt solid #63A5CE;
+    }
+
+    #content{
+        border-top:0px;
     }
 
     .svgHolder{
@@ -505,7 +598,7 @@ input, textarea{
         top:15px;
         right:30px;
         overflow: hidden;
-        border-radius:3px;
+        border-radius:2px;
     }
 
     .ham{
@@ -547,6 +640,25 @@ input, textarea{
         width:100%;
     }
 
+    .simpleCart_shelfItem{
+        left:0px;
+    }
+
+    .itemRow{
+        padding-top:5px;
+        padding-bottom:10px;
+    }
+
+}
+
+@media (max-device-width : 700px){
+    p, input, textarea{
+        font-size:24pt;
+    }
+
+    h1{
+        font-size:48pt;
+    }
 }
 
 /* Tablet */

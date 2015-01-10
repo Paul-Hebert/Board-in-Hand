@@ -1,4 +1,36 @@
+itemName = '';
+
 toggleVal = false;
+
+weight = 0;
+
+/**************************************************************************************
+	General
+**************************************************************************************/
+
+$( function(){
+	$('.L_Box').click( function(){
+		if ( ! $(this).hasClass('L_Box_Clicked') ){
+			$(this).addClass('L_Box_Clicked');
+		} else{
+			$(this).removeClass('L_Box_Clicked');			
+		}
+	});
+});
+
+function error(name, target){
+		$("#" + name + "Error").css("display","block");
+			$("#" + target).addClass('errorTag');
+}
+
+function hideErrors(){
+	$('.error').css('display','none');
+	$('.errorTag').removeClass('errorTag');
+}
+
+/**************************************************************************************
+	Contact
+**************************************************************************************/
 
 function changeDefault(id,defaultText){
 	if($('#' + id).val() === defaultText){
@@ -12,37 +44,37 @@ function resetDefault(id,defaultText){
 	}
 }
 
-function checkZip(){
-	var checkedVal = $('#zip').val();
+$(function(){
+	$('#attachment').bind('change', function() {
+			hideErrors();
+	        if (this.files[0].size > 1048576){
+	        	error("size","attachment");
+	        }
+	    });	
+});
 
-	if ( !isNaN(checkedVal) && checkedVal.length === 5){
-		window.location="checkout.php?zip=" + checkedVal;
-	} else{
-		$('#ZipError').css('display','block');
-		$('#zip').css({
-			'border':'2px solid #EF2B00',
-			'color':'#EF2B00'
-		});
-	}
+/**************************************************************************************
+	View Product
+**************************************************************************************/
+
+function showGear(){
+	$('.simpleCart_shelfItem').css('display','none');
+	$('.gear').css('display','block');
 }
 
-function setTotals(shipping){
-	var subTotal = shipping;
-	$('.item-total').each( function(){
-		individualPrice = $( this ).text();
-
-		if (individualPrice != 'Price'){
-			individualPrice = parseFloat(individualPrice.replace("$", ""));
-
-			subTotal += individualPrice;
-		}
-	});
-		$('#total').html('$' + subTotal.toFixed(2));
+function hideGear(){
+	$('.gear').css('display','none');
+	$('.thanks').css('display','block');
 }
+
+
+/**************************************************************************************
+	Mobile
+**************************************************************************************/
 
 function toggle(){
 	if (toggleVal == false){
-		$('nav').css('max-height','500px');
+		$('nav').css('max-height','333px');
 		$('.ham:first-of-type, .ham:last-of-type').css('fill','#71B8E5');
 		toggleVal = true;
 	} else{
@@ -62,13 +94,60 @@ function toggle(){
 		    email: "paul.hebert@paulhebertdesigns.com"
 		}
 	});
-		   
-	simpleCart.bind( 'beforeAdd' , function( item ){
-		// return false if the item is in the cart, 
-		// so it won't be added again
-		if ( simpleCart.has( item ) ){
-			$('#mainAddedError').css('display','inline-block');
-			$('.item_price, .item_add, .withGear').remove();
-			return false;
+
+	simpleCart.bind( 'afterAdd' , function( item ){
+		item.set( 'name' , itemName );
+		if ( $('.gear').css('display') == 'block' ){
+			hideGear();
+		} else{
+			showGear();
 		}
 	});
+
+	simpleCart.ready(function(){
+		simpleCart.each( function ( item ){
+			currentItem = item.get('name').replace(/\s+/g, '');
+			if ( itemName == currentItem ){
+				showGear();
+			}
+			if ( itemName + 'Gear:' == currentItem){
+				hideGear();
+			}
+		});
+	});
+
+/**************************************************************************************
+	Custom Cart Functions
+**************************************************************************************/
+
+function checkZip(){
+	hideErrors();
+	var checkedVal = $('#zip').val();
+
+	if ( !isNaN(checkedVal) && checkedVal.length === 5){
+		$('.itemRow').each( function(){
+			if ( $( this ).children( ".item-name" ).text().indexOf("Gear") > -1 ){
+				weight += 1;
+			} else{
+				weight += .5;
+			}
+		});
+		window.location="checkout.php?zip=" + checkedVal + '&weight=' + weight;
+	} else{
+		error('Zip','zip');
+	}
+}
+
+function setTotals(shipping){
+	var subTotal = shipping;
+	$('.item-total').each( function(){
+		individualPrice = $( this ).text();
+
+		if (individualPrice != 'Price'){
+			individualPrice = parseFloat(individualPrice.replace("$", ""));
+
+			subTotal += individualPrice;
+		}
+	});
+		$('#total').html('$' + subTotal.toFixed(2));
+}

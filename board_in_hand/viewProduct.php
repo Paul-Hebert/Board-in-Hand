@@ -18,6 +18,10 @@
 			$stmt->execute();
 
 			$row = $stmt->fetch();
+		
+			echo '<script type="text/javascript">
+					itemName = "' . $row['name'] . '";
+				</script>';
 		?>
 	</head>
 
@@ -30,52 +34,83 @@
 				</p>
 			</div>
 			
-			<?php echo '<img class="col-2 laptop" src="imgs/' . $row['name'] . '.png" />'; ?>
+			<?php 
+				echo '<div class="col-2 laptop L_Box"> 
+					<img src="imgs/decks/' . $row['name'] . '.png" />
+				</div>'; 
+			?>
 
 			<div class="productInfo">
-				<div class="simpleCart_shelfItem">
-					<span class="productName item_name">
-						<?php echo $row['name']; ?>
-					</span>
-
-					<br /><br />
+				<div class="simpleCart_shelfItem stretch-12">
+					<h1 class="item_name">
+						<?php echo preg_replace('/_/', ' ', $row['name']); ?>
+					</h1>
 
 			<?php if($row['price'] != 'Sold'){
-					echo '<div id="mainAddedError" class="error">*This item\'s already in your cart.</div>
-
+					echo '<br /><br />
 					<span class="item_price">
-						' . $row['price'] . '
+						' . $row['price'] . '*
 					</span>
 
 					<a href="javascript:;" class="item_add">Add to Cart</a>
-				</div>
-
-				<br /> <br />
-
-				<div class="simpleCart_shelfItem">
-					<span class="withGear item_name">
-						<span class="hidden">
-							' . $row['name'] . '
-						</span>
-						 With Gear:
-					</span>
 
 					<br /><br />
 
+					<p>*This deck comes without gear. To buy a complete deck click \'Add to Cart\' and then click \'Upgrade.\'</p>
+				</div>
+
+				<div class="simpleCart_shelfItem stretch-12 gear hidden">
+					<span class="withGear item_name hidden">
+						' . $row['name'] . '
+						 Gear:
+					</span>
+					<h1>Need Gear?</h1>
+					<p>This deck comes without gear. Click below to upgrade to a complete deck that\'s ready to ride!</p>
+
+					<br />
+
 					<span class="item_price ">
-						' . $row['withGear'] . '
+						$19.99
 					</span>
 
-					<a href="javascript:;" class="item_add">Add to Cart</a>
+					<a href="javascript:;" class="item_add">Upgrade</a>
+
+					<br /><br />
+
+					<p>Or click below to check out and enjoy your new deck!</p>
 				</div>	
 
-				<br /> <br />
+				<div class="simpleCart_shelfItem stretch-12 thanks hidden">
+					<h1>Thanks!</h1>
+					<p>This item has been added to your cart. Click below to check out and enjoy your new ride!</p>
+				</div>
+
 
 				<a href="viewCart.php" class="checkoutLink big">View Cart</a>';
 			} else{
-				echo '<span class="item_price">
-						Sold Out
-					</span>
+				echo '
+					<h2>Sold out!</h2>
+					<p>
+						Sorry, we\'re sold out of this deck. Click below to request a similar deck.
+					</p>
+
+					<br /> 
+
+					<a class="button" href="custom.php?deck=' . $row['name'] . '">
+						Request a Deck
+					</a>
+
+					<br /> <br /> 
+
+					<p> 
+						Or click below to view other decks.
+					</p>
+
+					<br /> 
+
+					<a class="button" href="index.php">
+						Other Decks
+					</a>
 				</div>';
 			}
 			?>

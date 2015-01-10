@@ -13,7 +13,7 @@
 			 
 			$fromZip = "95928";
 			$toZip = $_GET['zip'];
-			$weight = '1';
+			$weight = $_GET['weight'];
 			$carrier = "UPS";
 
 			$result = Postmaster_Rates::get(array(
@@ -34,7 +34,7 @@
 				  		shippingFlatRate : ' . $splitResult[0] . '
 				    });
 
-					simpleCart.bind( "afterSave" , function(){
+					simpleCart.bind( "load" , function(){
 						$(function (){
 							setTotals(' . $splitResult[0] . ');
 						});
@@ -57,7 +57,7 @@
 			</div>
 
 			<div id="checkoutHolder" class="stretch-12">
-				<a href="javascript:;" class="simpleCart_checkout big">Checkout</a>	
+				<a href="javascript:;" class="simpleCart_checkout big">Check Out</a>	
 			</div>
 		</div>
 
