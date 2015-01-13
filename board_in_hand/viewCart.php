@@ -27,8 +27,18 @@
 			<div id="checkoutHolder" class="stretch-12">
 				Enter your ZIP code below:
 
-				<span class="error" id="ZipError">*Please enter your zip code.</span>
+				<span class="error" id="ZipError">*Please enter your zip code or country below.</span>
 				<input type="text" id="zip" value="&bull;&bull;&bull;&bull;&bull;" onclick="changeDefault('zip','&bull;&bull;&bull;&bull;&bull;');" onblur="resetDefault('zip','&bull;&bull;&bull;&bull;&bull;');"/>
+
+				<br /> 
+				<br />
+
+				Not from the USA? Enter your country below:
+
+				<br />
+				<br />
+
+				<?php include 'php/countries.php';?>
 
 				<br /> 
 				<br />

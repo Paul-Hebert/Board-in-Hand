@@ -35,8 +35,8 @@
 			</div>
 			
 			<?php 
-				echo '<div class="col-2 laptop L_Box"> 
-					<img src="imgs/decks/' . $row['name'] . '.png" />
+				echo '<div class="col-2 laptop"> 
+					<img src="imgs/decks/thumb/' . $row['name'] . '.png" class="lightBox"/>
 				</div>'; 
 			?>
 

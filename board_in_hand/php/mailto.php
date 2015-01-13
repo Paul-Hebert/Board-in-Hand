@@ -5,6 +5,8 @@
 
 	$tooLarge = false;
 
+	$wrongType = false;
+
 	$mail = new PHPMailer;
 
 	//$mail->SMTPDebug = 3;                               // Enable verbose debug output
@@ -41,7 +43,12 @@
 	$mail->Body    = $_POST['message'];
 	$mail->AltBody = $_POST['message'];
 
-	if ($tooLarge){
+
+	if($tooLarge && $wrongType){
+		header("Location: " . $_GET['url'] . 'err=both');
+	} else if ($wrongType){
+		header("Location: " . $_GET['url'] . 'err=type');		
+	} else if ($tooLarge){
 		header("Location: " . $_GET['url'] . 'err=size');
 		die();
 	} else{

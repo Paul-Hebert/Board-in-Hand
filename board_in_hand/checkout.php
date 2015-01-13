@@ -16,12 +16,23 @@
 			$weight = $_GET['weight'];
 			$carrier = "UPS";
 
-			$result = Postmaster_Rates::get(array(
-			"from_zip" => $fromZip,
-			"to_zip" => $toZip,
-			"weight" => $weight,
-			"carrier" => $carrier
-			));
+			if ( ctype_digit($toZip) ){
+				$result = Postmaster_Rates::get(array(
+				"from_zip" => $fromZip,
+				"to_zip" => $toZip,
+				"weight" => $weight,
+				"carrier" => $carrier
+				));
+			} else{
+				$result = Postmaster_Rates::get(array(
+				"from_zip" => $fromZip,
+				"to_zip" => $toZip,
+				"from_country" => 'US',
+				"to_country" => $toZip,
+				"weight" => $weight,
+				"carrier" => $carrier
+				));				
+			}
 
 			$splitResult = explode(':',$result);
 

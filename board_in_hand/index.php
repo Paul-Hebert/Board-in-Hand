@@ -34,7 +34,7 @@
 					}*/
 
 					echo '<a href="viewProduct.php?id=' . $row['id'] . '" class="col-3 deck">
-						<img src="imgs/decks/' . $row['name'] . '.png"/>
+						<img src="imgs/decks/thumb/' . $row['name'] . '.png"/>
 							<span class="productName">
 								' . preg_replace('/_/', ' ', $row['name']) . '
 							</span>

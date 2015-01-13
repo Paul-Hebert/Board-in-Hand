@@ -2,20 +2,26 @@ itemName = '';
 
 toggleVal = false;
 
-weight = 0;
 
 /**************************************************************************************
 	General
 **************************************************************************************/
 
+
 $( function(){
-	$('.L_Box').click( function(){
-		if ( ! $(this).hasClass('L_Box_Clicked') ){
-			$(this).addClass('L_Box_Clicked');
+	$('.lightBox').click( function(){
+		if ( $('.lightPop').length == 0 ){
+			lightPop = '<div class="lightPop"><div class="imgHolder"><img src="imgs/close.png" id="close" /><img src="' + $(this).attr('src').replace('/thumb/','/horizontal/') + '"/></div></div>';
+
+			$('body').append(lightPop);
+			$('.lightPop').click( function(){
+				$('.lightPop').remove(); 
+			});
 		} else{
-			$(this).removeClass('L_Box_Clicked');			
+			$('.lightPop').remove();
 		}
 	});
+	
 });
 
 function error(name, target){
@@ -122,20 +128,32 @@ function toggle(){
 
 function checkZip(){
 	hideErrors();
-	var checkedVal = $('#zip').val();
 
-	if ( !isNaN(checkedVal) && checkedVal.length === 5){
-		$('.itemRow').each( function(){
-			if ( $( this ).children( ".item-name" ).text().indexOf("Gear") > -1 ){
-				weight += 1;
-			} else{
-				weight += .5;
-			}
-		});
-		window.location="checkout.php?zip=" + checkedVal + '&weight=' + weight;
+	checkedVal = $('#zip').val();
+
+	calcWeight();
+	if ( $('#countries').val() === 'US' ){
+		if ( !isNaN(checkedVal) && checkedVal.length === 5){
+			window.location="checkout.php?zip=" + checkedVal + '&weight=' + weight;
+		} else{
+			error('Zip','zip');
+			error('Zip','countries');
+		}
 	} else{
-		error('Zip','zip');
+			window.location="checkout.php?zip=" + $('#countries').val() + '&weight=' + weight;		
 	}
+}
+
+function calcWeight(){
+	weight = 0;
+
+	$('.itemRow').each( function(){
+		if ( $( this ).children( ".item-name" ).text().indexOf("Gear") > -1 ){
+			weight += 1;	
+		} else{
+			weight += .5;
+		}
+	});
 }
 
 function setTotals(shipping){

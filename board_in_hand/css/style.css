@@ -140,46 +140,46 @@ nav.row{
     min-height:550px;
 }
 
-.L_Box{
+.lightBox{
     cursor:pointer;
     z-index:2;
 }
 
-.L_Box img{
+.lightPop{
     width:100%;
-    padding:7px;
-    padding-bottom:30px;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
 }
 
-.L_Box.L_Box_Clicked{
-    width:700px;
-    position:fixed;
-    top:5%;
-    left:15%;
+.lightPop .imgHolder{
+    position:relative;
+    margin: 100px auto;
 
     background:#fff;
-    overflow:hidden;
 
-    border-radius:15px;
-    -moz-border-radius:15px;
-    -webkit-border-radius:15px;
-    -o-border-radius:15px;
-    border:4px solid #63A5CE;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    max-width:95%;
 }
 
-.L_Box_Clicked img{ 
-    height:700px;
-    width:auto;
+.lightPop .imgHolder img:not(#close){
+    margin: 0 auto;
+    padding:50px;
+    display:block;
+    width:95%;
+}
+
+#close{
     position:relative;
-    left:250px;
-    /* Firefox */
-    -moz-transform:rotate(-45deg);
-    /* Safari and Chrome */
-    -webkit-transform:rotate(-45deg);
-    /* Opera */
-    -o-transform:rotate(45deg);
-    /* IE9 */
-    -ms-transform:rotate(45deg);
+    left:94%;
+    padding-top:1%;
+    width:5%;
+    height:auto;
+    cursor: pointer;
 }
 
 /*/////////////////////////////////////////////////////////////////////////////
@@ -306,9 +306,11 @@ img.col-2{
 
 .big{
     font-size:24pt;
-    padding:10px;
-    padding-right:35px;
-    padding-left:35px;
+    padding-top:20px;
+    padding-bottom:20px;
+    display:inline-block;
+    width:250px;
+    text-align: center;
     margin-left:10px;
     white-space: nowrap;
 }
@@ -443,7 +445,7 @@ form{
     padding:54px;
 }
 
-input, textarea{
+input, textarea, select{
     border:none;
     border-radius: 2px;
     -moz-border-radius: 2px;
@@ -488,6 +490,10 @@ input, textarea{
 
 #sizeError{
     width:100%;
+}
+
+select{
+    width:214px;
 }
 
 /*/////////////////////////////////////////////////////////////////////////////
@@ -647,6 +653,10 @@ input, textarea{
     .itemRow{
         padding-top:5px;
         padding-bottom:10px;
+    }
+
+    .lightPop{
+        display:none;
     }
 
 }

@@ -11,7 +11,7 @@
 							<input type="text" name="name" id="name" />
 
 							<label for="email">E-mail:</label>
-							<input type="text" name="email" id="email" />
+							<input type="email" name="email" id="email" />
 
 							<label for="subject">Subject:</label>
 							<input type="text" name="subject" id="subject"  />

@@ -11,7 +11,7 @@
 		</a>
 
 		<a href="viewCart.php" id="cartDisplay" class="laptop">
-			<span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
+			<span class="simpleCart_quantity">This website requres javascript to purchase items. Please allow javascript on this page.<br/></span> items - <span class="simpleCart_total"></span>
 			<img src="imgs/cart.png" id="cartIMG"/>
     	</div>
 	</div>
