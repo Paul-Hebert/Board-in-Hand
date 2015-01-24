@@ -44,6 +44,12 @@
 					</a>';
 				}
 			?>
+
+			<div id="moreDesigns">
+				<h1>More Designs Coming Soon.</h1>
+				<a href="custom.php" class="big button">Custom Decks</a>
+			</div>
+
 		</div>
 		<?php include('php/footer.php') ?>
 	</body>

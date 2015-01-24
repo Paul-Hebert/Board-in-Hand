@@ -1,14 +1,12 @@
 <select id="countries" name="countries">
 <option value="US">United States</option>
 <option value="AF">Afghanistan</option>
-<option value="AX">Åland Islands</option>
 <option value="AL">Albania</option>
 <option value="DZ">Algeria</option>
 <option value="AS">American Samoa</option>
 <option value="AD">Andorra</option>
 <option value="AO">Angola</option>
 <option value="AI">Anguilla</option>
-<option value="AQ">Antarctica</option>
 <option value="AG">Antigua and Barbuda</option>
 <option value="AR">Argentina</option>
 <option value="AM">Armenia</option>
@@ -29,9 +27,7 @@
 <option value="BO">Bolivia</option>
 <option value="BA">Bosnia and Herzegovina</option>
 <option value="BW">Botswana</option>
-<option value="BV">Bouvet Island</option>
 <option value="BR">Brazil</option>
-<option value="IO">British Indian Ocean Territory</option>
 <option value="BN">Brunei Darussalam</option>
 <option value="BG">Bulgaria</option>
 <option value="BF">Burkina Faso</option>
@@ -45,8 +41,6 @@
 <option value="TD">Chad</option>
 <option value="CL">Chile</option>
 <option value="CN">China</option>
-<option value="CX">Christmas Island</option>
-<option value="CC">Cocos (Keeling) Islands</option>
 <option value="CO">Colombia</option>
 <option value="KM">Comoros</option>
 <option value="CG">Congo</option>
@@ -55,7 +49,6 @@
 <option value="CR">Costa Rica</option>
 <option value="CI">Cote D'ivoire</option>
 <option value="HR">Croatia</option>
-<option value="CU">Cuba</option>
 <option value="CY">Cyprus</option>
 <option value="CZ">Czech Republic</option>
 <option value="DK">Denmark</option>
@@ -65,18 +58,15 @@
 <option value="EC">Ecuador</option>
 <option value="EG">Egypt</option>
 <option value="SV">El Salvador</option>
-<option value="GQ">Equatorial Guinea</option>
 <option value="ER">Eritrea</option>
 <option value="EE">Estonia</option>
 <option value="ET">Ethiopia</option>
-<option value="FK">Falkland Islands (Malvinas)</option>
 <option value="FO">Faroe Islands</option>
 <option value="FJ">Fiji</option>
 <option value="FI">Finland</option>
 <option value="FR">France</option>
 <option value="GF">French Guiana</option>
 <option value="PF">French Polynesia</option>
-<option value="TF">French Southern Territories</option>
 <option value="GA">Gabon</option>
 <option value="GM">Gambia</option>
 <option value="GE">Georgia</option>
@@ -94,7 +84,6 @@
 <option value="GW">Guinea-bissau</option>
 <option value="GY">Guyana</option>
 <option value="HT">Haiti</option>
-<option value="HM">Heard Island and Mcdonald Islands</option>
 <option value="VA">Holy See (Vatican City State)</option>
 <option value="HN">Honduras</option>
 <option value="HK">Hong Kong</option>
@@ -105,7 +94,6 @@
 <option value="IR">Iran, Islamic Republic of</option>
 <option value="IQ">Iraq</option>
 <option value="IE">Ireland</option>
-<option value="IM">Isle of Man</option>
 <option value="IL">Israel</option>
 <option value="IT">Italy</option>
 <option value="JM">Jamaica</option>
@@ -115,7 +103,6 @@
 <option value="KZ">Kazakhstan</option>
 <option value="KE">Kenya</option>
 <option value="KI">Kiribati</option>
-<option value="KP">Korea, Democratic People's Republic of</option>
 <option value="KR">Korea, Republic of</option>
 <option value="KW">Kuwait</option>
 <option value="KG">Kyrgyzstan</option>
@@ -125,7 +112,6 @@
 <option value="LS">Lesotho</option>
 <option value="LR">Liberia</option>
 <option value="LY">Libyan Arab Jamahiriya</option>
-<option value="LI">Liechtenstein</option>
 <option value="LT">Lithuania</option>
 <option value="LU">Luxembourg</option>
 <option value="MO">Macao</option>
@@ -136,10 +122,10 @@
 <option value="MV">Maldives</option>
 <option value="ML">Mali</option>
 <option value="MT">Malta</option>
-<option value="MH">Marshall Islands</option>
 <option value="MQ">Martinique</option>
 <option value="MR">Mauritania</option>
 <option value="MU">Mauritius</option>
+
 <option value="YT">Mayotte</option>
 <option value="MX">Mexico</option>
 <option value="FM">Micronesia, Federated States of</option>

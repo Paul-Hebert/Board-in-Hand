@@ -14,7 +14,7 @@
 			$fromZip = "95928";
 			$toZip = $_GET['zip'];
 			$weight = $_GET['weight'];
-			$carrier = "UPS";
+			$carrier = "USPS";
 
 			if ( ctype_digit($toZip) ){
 				$result = Postmaster_Rates::get(array(

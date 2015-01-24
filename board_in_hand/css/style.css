@@ -46,11 +46,11 @@ h1, p{
     margin-right: 20px;
 }
 
-nav, #header, #content, .checkout .itemRow:last-of-type, h1, h2, .simpleCart_shelfItem{
+nav, #header, #content, .checkout .itemRow:last-of-type, h1, h2, .simpleCart_shelfItem, #moreDesigns{
     border-bottom: 2pt solid #63A5CE;
 }
 
-#content, #footer, nav{
+#content, #footer, nav, #moreDesigns{
     border-top: 2pt solid #63A5CE;
 }
 
@@ -169,6 +169,7 @@ nav.row{
 .lightPop .imgHolder img:not(#close){
     margin: 0 auto;
     padding:50px;
+    padding-bottom:120px;
     display:block;
     width:95%;
 }
@@ -240,7 +241,14 @@ nav.row{
     font-style:italic;
 }
 
-
+#moreDesigns{
+    margin: 0 auto;
+    width:100%;
+    text-align:center;
+    clear:both;
+    margin-bottom:30px;
+    padding:10px;
+}
 
 /*/////////////////////////////////////////////////////////////////////////////
     View Product
@@ -455,9 +463,11 @@ input, textarea, select{
     background:#EFEFEF;
     color:#666;
     font-size:12pt;
+    margin:5px;
+    margin-bottom:10px;
 }
 
-input:hover, input:focus, textarea:hover, textarea:focus{
+input:hover, input:focus, textarea:hover, textarea:focus, select:focus{
     background:#fff;
     color:#000;
 }
@@ -466,7 +476,7 @@ form label, form input, form textarea{
     width:100%;
 }
 
-input:focus, textarea:focus{
+input:focus, textarea:focus, select:focus{
     border:2px solid #EF2B00;
     padding:4px;
 }
@@ -474,11 +484,6 @@ input:focus, textarea:focus{
 label{
     font-size:14pt;
     font-weight:600;
-}
-
-input, textarea{
-    margin:5px;
-    margin-bottom:10px;
 }
 
 .send{
