@@ -1,3 +1,3 @@
 <div id="footer">
-	<a target="_BLANK" href="http://www.mildwestdesigns.com">&copy; 2014, Mild West Designs</a>
+	<?php echo '<a target="_BLANK" href="http://www.paulhebertdesigns.com">&copy; ' . date("Y") . ', Paul Hebert Designs</a>'; ?>
 </div>
